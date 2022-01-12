@@ -3,15 +3,9 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="buscar()"  autocomplete="off">
-            <input 
-            type="text" 
-            name="termino"
-            class="form-control"
-            [(ngModel)]="termino"
-            placeholder="Buscar Pais.."
-            />
-        </form>
+        <app-pais-input
+        (onEnter)="buscar( $event )"
+        ></app-pais-input>
     </div>
 </div>
 
@@ -23,40 +17,8 @@
     No se encontró nada con el término: &nbsp;  *{{termino}}*
 </div>
 
-<div class="row" *ngIf="!hayError">
+<div class="row" *ngIf="paises.length > 0">
     <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre Codigo</th>
-                    <th>Nombre</th>
-                    <th>Nombre Oficial</th>
-                    <th>Población</th>
-                    
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let pais of paises; let i = index">
-                    <td>{{i + 1}}</td>
-                    <td>
-                        <img src="" alt="" class="small-flag" [src]="pais.flags.svg">
-                    </td>
-                    <!-- objeto.nombre.common //SE CAMBIO LA INTERFAZ POR LA VERSION DE API(3.1) Y EL DEPRECADO DE .SUBSCRIBE DE RXJS  -->
-                    <td>{{pais.ccn3}}</td>
-                    <td>{{pais.name.common}}</td> 
-                    <td>{{pais.name.official}}</td>
-                    <td>{{pais.population | number}}</td>
-                    
-                    <td>
-                        <a [routerLink]="['/pais', pais.ccn3]" routerLinkActive="router-link-active"  > Ver... </a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
     </div>
 </div>
