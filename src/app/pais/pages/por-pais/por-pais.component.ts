@@ -42,12 +42,16 @@ export class PorPaisComponent
               this.paises = []; 
             }
       });
-
-      
-
   }
 
-  
+  sugerencias(termino:string) {
+
+    this.hayError = false;
+    //ToDo: Crear sugerencias.
+  }
+
+
+
 
   get pais(){
     return this.paisService.buscarPais;

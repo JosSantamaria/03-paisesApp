@@ -1,4 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -7,14 +9,32 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styles: [
   ]
 })
-export class PaisInputComponent  {
-
-  termino:string = '';
+export class PaisInputComponent implements OnInit {
 
   @Output() onEnter: EventEmitter<string> = new EventEmitter(); //Creamos una salida ('@Outoput') que mandara los datos hacioa afuera del componente.
+  @Output() onDebounce: EventEmitter<string> = new EventEmitter();//evento que ayudara con busquedas en 'real time'.
+  
+  termino:string = '';
+  
+  debouncer: Subject<string> = new Subject(); //El debouncer es un Observable especial
 
+  ngOnInit(): void {
+    this.debouncer
+    .pipe(debounceTime(300))
+    .subscribe(valor =>{
+      this.onDebounce.emit(valor);
+    })
+  }
+// 
   buscar(){
-    
     this.onEnter.emit(this.termino); 
   }
+
+  //Funcion para la carga del debouncer
+  teclaPresionada(){
+
+  this.debouncer.next(this.termino);
+  }
+
+
 }
