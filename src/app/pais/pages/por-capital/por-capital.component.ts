@@ -26,14 +26,12 @@ this.termino = termino;
 
 this.paisService.buscarCapital( termino)
   .subscribe(
-  {
+    {
         next: (paises) => 
         { 
-          
           console.log(paises);
           this.paises = paises;
           console.dir(paises);
-          
         }
         ,
         error: (err) =>
@@ -41,22 +39,8 @@ this.paisService.buscarCapital( termino)
           this.hayError=true;  
           this.paises = []; 
         }
-  });
+    });
 }
 
-sugerencias(termino:string) {
-
-this.hayError = false;
-//ToDo: Crear sugerencias.
-}
-
-
-
-
-get pais(){
-return this.paisService.buscarPais;
-}
-  
-  
 
 }
