@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Country } from '../interfaces/pais.interface';
+import { Country } from '../interfaces/pais.interface'; //Consideracion Reemplazo InTERFACE V2
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,12 @@ export class PaisService {
     return this.http.get<Country[]>(url);
 
   }
+
+  getPaisAlpha(id: string ): Observable<Country[]>{
+
+    const url = `${this.apiUrl}/alpha/${ id }`;
+    return this.http.get<Country[]>(url);
+
+  } 
 
 }

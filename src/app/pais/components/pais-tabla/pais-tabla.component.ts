@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Country } from '../../interfaces/pais.interface';
+import { Country } from '../../interfaces/pais.interface'; //Consideracion Reemplazo InTERFACE V2
 
 
 @Component({

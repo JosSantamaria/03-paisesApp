@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Country } from '../../interfaces/pais.interface';
+import { Country } from '../../interfaces/pais.interface'; //Consideracion Reemplazo InTERFACE V2
 import { PaisService } from '../../services/pais.service';
 
 @Component({
