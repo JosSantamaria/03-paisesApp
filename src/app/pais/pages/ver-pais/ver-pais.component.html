@@ -1,3 +1,30 @@
-<h2>Ver Pais</h2>
-<hr>
-<app-pais-tabla></app-pais-tabla>
+<div    *ngIf="!pais;else divPais" 
+    class="aler alert-info">
+    Espere por favor...
+</div>
+
+<ng-template #divPais>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Pais: <small> {{pais.name}} </small> </h1>
+        </div>
+    </div>
+
+    <hr>
+    
+    <div class="row">
+        <div class="col-4">
+            <h3>Bandera</h3>
+            <img [src]="pais.flag" alt="" class="img-thumbnail">
+        </div>
+    </div>
+
+    <div class="col">
+        <h3>Información:</h3>
+        <ul  >
+            <li class="list-group-item"> Nombre Comun: {{pais.name}}</li>
+        </ul>
+    </div> 
+
+</ng-template>

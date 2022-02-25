@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+import { Country } from '../../interfaces/pais2.interface';
 
 import { PaisService } from '../../services/pais.service';
 
@@ -12,8 +13,11 @@ import { PaisService } from '../../services/pais.service';
   styles: [
   ]
 })
+
 export class VerPaisComponent implements OnInit {
-  
+
+  //TS Confis en mi = propiedad+ *' ! '*
+  pais!: Country;
 
   constructor(
     private activateRoute:ActivatedRoute,
@@ -22,25 +26,14 @@ export class VerPaisComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.activateRoute.params
-    // .pipe(      //desestructurado de id dentro de arreglo country[]
-    //   switchMap( (param) => this.paisService.getPaisAlpha( param[0] ) )
-    // )
-    // .subscribe( resp =>{
-    //   console.log(resp)
-    // });
-
     this.activateRoute.params
-    .subscribe( ( {id} ) =>{
-      console.log('Codigo Alpha: '+ id);
-
-      this.paisService.getPaisAlpha( id )
-      .subscribe( pais=>{
-        console.log(pais);
-      })
-
-    });
-
+    .pipe(  //param.id es reservado para indices, asi que se accede entre llaves ['id']especificado como un string
+      //Desestructurado de objeto
+      switchMap( ({ id }) => this.paisService.getPaisAlpha( id ) ),
+      tap(console.log) //tap imprime el resultado de switchmap
+    )
+    .subscribe( pais => this.pais = pais );
+    
   }
 
 }
