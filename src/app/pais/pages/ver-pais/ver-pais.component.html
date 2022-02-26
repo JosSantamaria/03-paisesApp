@@ -1,5 +1,5 @@
 <div    *ngIf="!pais;else divPais" 
-    class="aler alert-info">
+    class="alert alert-info">
     Espere por favor...
 </div>
 
@@ -13,18 +13,81 @@
 
     <hr>
     
+    
     <div class="row">
         <div class="col-4">
             <h3>Bandera</h3>
             <img [src]="pais.flag" alt="" class="img-thumbnail">
         </div>
+
+        <div class="col">
+            <h3>Información:</h3>
+            <ul class="list-group">
+                <li class="list-group-item"> Nombre Comun: <b>{{pais.name}}</b></li>
+                <li class="list-group-item"> Poblacion: <p class="text-primary">{{pais.population | number}}</p></li>
+                <li class="list-group-item"> Simbolo / Codigo Moneda: <p class="text-success">{{pais.currencies[0]["symbol"] }} + {{pais.currencies[0]["code"] }}</p></li>
+                <li class="list-group-item"> Nombre de Moneda: {{pais.currencies[0]["name"]}}</li>
+                <li class="list-group-item"> Codigo Alpha 3: {{pais.alpha3Code}}</li>
+            </ul>
+        </div>
+        
     </div>
 
-    <div class="col">
-        <h3>Información:</h3>
-        <ul  >
-            <li class="list-group-item"> Nombre Comun: {{pais.name}}</li>
-        </ul>
-    </div> 
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <h3>Capital: <h5 class="text-danger">{{pais.capital}} </h5> </h3>
+        </div>
+
+        <div class="col">
+            <h4>TLD: <p class="text-success"> {{pais.topLevelDomain[0]}} </p> </h4>
+        </div>
+        
+        <div class="col">
+            <h4>Región: <p class="text-warning"> {{pais.region}} </p> </h4>
+        </div>
+
+        <div class="col">
+            <h4>Nombre Oficial: <p class="text-primary"> {{pais.altSpellings[2]}} </p> </h4>
+        </div>
+
+    </div>
+    
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <h4>Codigo de Area: <p class="text-success"> {{pais.callingCodes}}</p> </h4>
+            
+        </div>
+
+        <div class="col">
+            <h4>Paises Vecinos: <p class="text-primary"> {{pais.borders}}</p> </h4>
+            
+        </div>
+    </div>
+
+    <h3>Traducciones</h3>
+    <div class="row">
+        <div class="col">
+        <span class="badge bg-primary mr-1">{{pais.translations.de}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.es}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.fr}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.ja}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.it}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.br}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.pt}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.nl}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.hr}}</span>
+        <span class="badge bg-primary mr-1">{{pais.translations.fa}}</span>
+    </div>
+    <h4>Respuesya JSON</h4>
+    <pre class="mt-5">{{ pais | json }}</pre>
+</div>
+
+
+
+    
 
 </ng-template>
