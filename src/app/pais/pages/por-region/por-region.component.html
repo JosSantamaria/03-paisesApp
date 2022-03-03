@@ -1,4 +1,84 @@
-<h2>Por Region</h2>
+<h3>Buscar por region: <small class="text-primary">{{regionActiva | titlecase}}</small></h3>
+
 <hr>
 
-<app-pais-tabla></app-pais-tabla>
+<div class="row">
+    <div class="col">
+        
+        <!-- [class.btn-primary]="region === regionActiva" -->
+
+        <!-- [ngClass]="{
+            'btn--primary': regionActiva === region,
+            'btn-outline-primary': regionActiva !== region
+            }" -->
+        <button  *ngFor="let region of regiones"
+        [class]=" getClaseCSS(region) " 
+        (click)="activarRegion(region)"
+        >
+            {{region | uppercase }}
+        </button>
+    </div>
+</div>
+
+
+<hr class="col-12">
+<div class="row">
+    
+    <div class="col">
+        
+        <p>
+            *EU (Unión Europea)
+        </p>
+        <p>
+            EFTA (Asociación Europea de Libre Comercio)
+        </p>
+        <p>
+            *CARICOM (Comunidad del Caribe)
+        </p>
+        <p>
+            PA (Alianza del Pacífico)
+        </p>
+        <p>
+            *AU (Unión Africana)
+        </p>
+        <p>
+            CEFTA (Acuerdo de Libre Comercio de Europa Central)
+        </p>
+        <p>
+            *NAFTA (TLCAN) (Tratado de Libre Comercio de América del Norte)
+        </p>
+        
+    </div>
+            
+    <div class="col">
+        
+        <p>
+            USAN (Unión de Naciones Suramericanas)
+        </p>
+        <p>
+            *EEU (Unión Económica Euroasiática)
+        </p>
+        <p>
+            AL (Liga Árabe)
+        </p>
+        <p>
+            *ASEAN (Asociación de Naciones del Sudeste Asiático)
+        </p>
+        <p>
+            CAIS (Sistema de la Integración Centroamericana)
+        </p>
+        <p>
+            *SAARC (Asociación del Sur de Asia para la Cooperación Regional)
+        </p>
+        
+        
+    </div>
+    
+</div>
+<hr class="col-12">
+
+<div class="row" *ngIf="paises.length > 0">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
