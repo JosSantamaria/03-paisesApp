@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Country } from '../interfaces/pais2.interface'; //Consideracion Reemplazo InTERFACE V2
 
@@ -34,10 +34,11 @@ export class PaisService {
   } 
 
   getPaises(region: string ): Observable<Country[]>{
+    const params = new HttpParams()
+    .set('fields','flag,name,capital,languages,population,alpha2Code');
 
     const url = `${this.apiUrl}/regionalbloc/${ region }`;
-    return this.http.get<Country[]>(url);
-
+    return this.http.get<Country[]>(url,{ params }); 
   } 
 
 }
