@@ -1,32 +1,37 @@
-<h3>Buscar por region: <small class="text-primary">{{regionActiva | titlecase}}</small></h3>
-
-<hr>
-
-<div class="row">
-    <div class="col">
-        
-        <!-- [class.btn-primary]="region === regionActiva" -->
-
-        <!-- [ngClass]="{
-            'btn--primary': regionActiva === region,
-            'btn-outline-primary': regionActiva !== region
-            }" -->
-        <button  *ngFor="let region of regiones"
-        [class]=" getClaseCSS(region) " 
-        (click)="activarRegion(region)"
-        >
-            {{region | uppercase }}
-        </button>
+<div class="animate__animated animate__fadeIn animate__fast"> 
+    <h3 class="animate__animated animate__fadeIn"
+    >Buscar por region: <small class="text-primary">{{regionActiva | titlecase}}</small></h3>
+    
+    <hr>
+    
+    <div class="row">
+        <div class="col">
+            
+            <!-- [class.btn-primary]="region === regionActiva" -->
+    
+            <!-- [ngClass]="{
+                'btn--primary': regionActiva === region,
+                'btn-outline-primary': regionActiva !== region
+                }" -->
+            <button  *ngFor="let region of regiones"
+            [class]=" getClaseCSS(region) " 
+            (click)="activarRegion(region)"
+            class="mt-2 mr-2"
+            >
+                {{region | uppercase }}
+            </button>
+        </div>
     </div>
+    
 </div>
 
 
 <hr class="col-12">
-<div class="row">
+<div class="row animate__animated animate__bounce animate__faster">
     
-    <div class="col">
+    <div class="col ">
         
-        <p>
+        <p class="mt-2">
             *EU (Unión Europea)
         </p>
         <p>
@@ -52,7 +57,7 @@
             
     <div class="col">
         
-        <p>
+        <p class="mt-2">
             USAN (Unión de Naciones Suramericanas)
         </p>
         <p>

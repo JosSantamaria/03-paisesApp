@@ -10,19 +10,24 @@ export class PaisService {
   
   private apiUrl:string ='https://restcountries.com/v2';
 
+  //Optimizing HTTP RESPONSE
+  get httpParams(){
+    return new HttpParams().set('fields','name,flag,capital,alpha2Code,languages,population');
+  }
+
   constructor(private http: HttpClient) { }
 
   buscarPais(termino: string ): Observable<Country[]>{
 
     const url = `${this.apiUrl}/name/${ termino }`;
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url,{ params:this.httpParams });
 
   }
 
   buscarCapital(termino: string ): Observable<Country[]>{
 
     const url = `${this.apiUrl}/capital/${ termino }`;
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url,{ params:this.httpParams });
 
   }
 
@@ -34,11 +39,10 @@ export class PaisService {
   } 
 
   getPaises(region: string ): Observable<Country[]>{
-    const params = new HttpParams()
-    .set('fields','flag,name,capital,languages,population,alpha2Code');
+    
 
     const url = `${this.apiUrl}/regionalbloc/${ region }`;
-    return this.http.get<Country[]>(url,{ params }); 
+    return this.http.get<Country[]>(url,{ params:this.httpParams }); 
   } 
 
 }
