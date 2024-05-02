@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "03-paisesApp"
+  "defaultProject": "03-paisesApp",
+  "cli": {
+    "analytics": false
+  }
 }
